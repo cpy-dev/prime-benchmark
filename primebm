@@ -1,0 +1,45 @@
+#!/usr/bin/python3
+
+import os
+import sys
+import time
+from _thread import start_new_thread
+
+done = False
+duration = None
+baseScore = 10000
+baseDuration = 3284638400
+
+def runBench():
+    global done, duration
+
+    before = time.time_ns()
+    os.system('./executables/amd64 > /dev/null')
+    after = time.time_ns()
+
+    duration = after - before
+    done = True
+
+if __name__ == '__main__':
+    print('Primebm BenchMark')
+    print('Single thread benchmarking tool written in Rust')
+    print('Score is assigned referencing the performance of AMD Ryzen 7 5800 with a base score of 10000')
+    print('\nStarting benchmark')
+
+    start_new_thread(runBench, ())
+
+    i = 0
+    while not done:
+        print('\rRunning' + '.' * (i % 4) + ' ' * (3 - i % 4), end='')
+        i += 1
+        time.sleep(0.5)
+
+    print('Done\n')
+
+    print('Reference score: 10000 points @', baseDuration, 'nanoseconds')
+    
+    print('Benchmark duration: ' + str(duration) + ' nanoseconds')
+    delta = baseDuration - duration
+    deltaScore = baseScore * delta / baseDuration
+    score = baseScore + deltaScore
+    print('Score: ', int(score))
