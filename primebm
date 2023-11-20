@@ -36,10 +36,9 @@ if __name__ == '__main__':
 
     print('Done\n')
 
-    print('Reference score: 10000 points @', baseDuration, 'nanoseconds')
+    print('Reference score: 10000 points @', baseDuration, 'nanoseconds (' + str(round(baseDuration / 1000000000, 2)) + ' seconds)')
     
-    print('Benchmark duration: ' + str(duration) + ' nanoseconds')
-    delta = baseDuration - duration
-    deltaScore = baseScore * delta / baseDuration
-    score = baseScore + deltaScore
+    print('Benchmark duration: ' + str(duration) + ' nanoseconds (' + str(round(duration / 1000000000, 2)) + ' seconds)')
+    durationProportion = duration / baseDuration
+    score = baseScore / durationProportion
     print('Score: ', int(score))
