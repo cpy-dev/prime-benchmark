@@ -23,7 +23,7 @@ def runBench():
 if __name__ == '__main__':
     print('Primebm BenchMark')
     print('Single thread benchmarking tool written in Rust')
-    print('Score is assigned referencing the performance of AMD Ryzen 7 5800 with a base score of 10000')
+    print('Score is assigned referencing the performance of AMD Ryzen 7 5800X with a base score of 10000')
     print('\nStarting benchmark')
 
     start_new_thread(runBench, ())
